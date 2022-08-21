@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>country selector</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Poppins;
+      }
+
+      body {
+        background-image: linear-gradient(to right, #c33764, #1d2671);
+        background-image: linear-gradient(to right, #304352, #d7d2cc);
+      }
+      .main {
+        display: flex;
+        justify-content: space-around;
+        margin: 10rem auto;
+      }
+      .left-box {
+        border-left: 0.9rem solid white;
+        width: 30%;
+        font-size: 4.4rem;
+        padding-left: 1%;
+        color: white;
+        height: 19rem;
+      }
+      .right-box {
+        width: 25%;
+        height: auto;
+        /* display: flex; */
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .top {
+        padding: 3.2%;
+        display: flex;
+        width: 100%;
+        background-color: white;
+        justify-content: space-between;
+        height: 3.2rem;
+        margin-bottom: 2%;
+        padding: 3.5%;
+        border-radius: 0.3rem;
+        cursor: pointer;
+      }
+      .bottom {
+        background-color: white;
+
+        padding: 3.5%;
+        border-radius: 0.3rem;
+        display: none;
+        max-height: 20rem;
+        overflow-y: scroll;
+      }
+      .input-box {
+        background-color: white;
+        height: 2.8rem;
+        padding: 2.5% 2% 0;
+        border: 0.1rem solid rgb(220, 210, 210);
+        border-radius: 0.3rem;
+        margin-bottom: 1%;
+      }
+      #search {
+        border: none;
+        position: relative;
+        top: -0.5rem;
+        color: black;
+        font-size: 95%;
+        font-weight: 400;
+      }
+      #search:focus {
+        outline: none;
+      }
+      .material-icons {
+        color: rgb(170, 157, 157);
+      }
+      .countrys {
+        padding: 0.7rem;
+        font-weight: 420;
+        font-size: 110%;
+        list-style: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="left-box">
+        <div>
+          <pre>
+Custom
+Select Menu
+Javascript
+                </pre
+          >
+        </div>
+      </div>
+
+      <div class="right-box">
+        <div class="top">
+          <div>Select Country</div>
+          <i class="material-icons">expand_more</i>
+        </div>
+
+        <div class="bottom">
+          <div class="input-box">
+            <i class="material-icons" id="search-Icon">search</i>
+            <input type="text" name="" id="search" placeholder="Search" />
+          </div>
+          <ul class="listOfCountry">
+            <!-- <li class="countrys">
+                Australia
+              </li>
+              <li class="countrys">
+                colombia
+              </li> -->
+          </ul>
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let input = document.querySelector("#search");
+      let select = document.querySelector(".top");
+      let countrys_list = document.querySelector(".listOfCountry");
+      let box = document.querySelector(".bottom");
+      const countryList = [
+        "Afghanistan",
+        "Albania",
+        "Algeria",
+        "American Samoa",
+        "Andorra",
+        "Angola",
+        "Anguilla",
+        "Antarctica",
+        "Antigua and Barbuda",
+        "Argentina",
+        "Armenia",
+        "Aruba",
+        "Australia",
+        "Austria",
+        "Azerbaijan",
+        "Bahamas (the)",
+        "Bahrain",
+        "Bangladesh",
+        "Barbados",
+        "Belarus",
+        "Belgium",
+        "Belize",
+        "Benin",
+        "Bermuda",
+        "Bhutan",
+        "Bolivia (Plurinational State of)",
+        "Bonaire, Sint Eustatius and Saba",
+        "Bosnia and Herzegovina",
+        "Botswana",
+        "Bouvet Island",
+        "Brazil",
+        "British Indian Ocean Territory (the)",
+        "Brunei Darussalam",
+        "Bulgaria",
+        "Burkina Faso",
+        "Burundi",
+        "Cabo Verde",
+        "Cambodia",
+        "Cameroon",
+        "Canada",
+        "Cayman Islands (the)",
+        "Central African Republic (the)",
+        "Chad",
+        "Chile",
+        "China",
+        "Christmas Island",
+        "Cocos (Keeling) Islands (the)",
+        "Colombia",
+        "Comoros (the)",
+        "Congo (the Democratic Republic of the)",
+        "Congo (the)",
+        "Cook Islands (the)",
+        "Costa Rica",
+        "Croatia",
+        "Cuba",
+        "Curaçao",
+        "Cyprus",
+        "Czechia",
+        "Côte d'Ivoire",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican Republic (the)",
+        "Ecuador",
+        "Egypt",
+        "El Salvador",
+        "Equatorial Guinea",
+        "Eritrea",
+        "Estonia",
+        "Eswatini",
+        "Ethiopia",
+        "Falkland Islands (the) [Malvinas]",
+        "Faroe Islands (the)",
+        "Fiji",
+        "Finland",
+        "France",
+        "French Guiana",
+        "French Polynesia",
+        "French Southern Territories (the)",
+        "Gabon",
+        "Gambia (the)",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Gibraltar",
+        "Greece",
+        "Greenland",
+        "Grenada",
+        "Guadeloupe",
+        "Guam",
+        "Guatemala",
+        "Guernsey",
+        "Guinea",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Heard Island and McDonald Islands",
+        "Holy See (the)",
+        "Honduras",
+        "Hong Kong",
+        "Hungary",
+        "Iceland",
+        "India",
+        "Indonesia",
+        "Iran (Islamic Republic of)",
+        "Iraq",
+        "Ireland",
+        "Isle of Man",
+        "Israel",
+        "Italy",
+        "Jamaica",
+        "Japan",
+        "Jersey",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Korea (the Democratic People's Republic of)",
+        "Korea (the Republic of)",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Lao People's Democratic Republic (the)",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libya",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macao",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Mali",
+        "Malta",
+        "Marshall Islands (the)",
+        "Martinique",
+        "Mauritania",
+        "Mauritius",
+        "Mayotte",
+        "Mexico",
+        "Micronesia (Federated States of)",
+        "Moldova (the Republic of)",
+        "Monaco",
+        "Mongolia",
+        "Montenegro",
+        "Montserrat",
+        "Morocco",
+        "Mozambique",
+        "Myanmar",
+        "Namibia",
+        "Nauru",
+        "Nepal",
+        "Netherlands (the)",
+        "New Caledonia",
+        "New Zealand",
+        "Nicaragua",
+        "Niger (the)",
+        "Nigeria",
+        "Niue",
+        "Norfolk Island",
+        "Northern Mariana Islands (the)",
+        "Norway",
+        "Oman",
+        "Pakistan",
+        "Palau",
+        "Palestine, State of",
+        "Panama",
+        "Papua New Guinea",
+        "Paraguay",
+        "Peru",
+        "Philippines (the)",
+        "Pitcairn",
+        "Poland",
+        "Portugal",
+        "Puerto Rico",
+        "Qatar",
+        "Republic of North Macedonia",
+        "Romania",
+        "Russian Federation (the)",
+        "Rwanda",
+        "Réunion",
+        "Saint Barthélemy",
+        "Saint Helena, Ascension and Tristan da Cunha",
+        "Saint Kitts and Nevis",
+        "Saint Lucia",
+        "Saint Martin (French part)",
+        "Saint Pierre and Miquelon",
+        "Saint Vincent and the Grenadines",
+        "Samoa",
+        "San Marino",
+        "Sao Tome and Principe",
+        "Saudi Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra Leone",
+        "Singapore",
+        "Sint Maarten (Dutch part)",
+        "Slovakia",
+        "Slovenia",
+        "Solomon Islands",
+        "Somalia",
+        "South Africa",
+        "South Georgia and the South Sandwich Islands",
+        "South Sudan",
+        "Spain",
+        "Sri Lanka",
+        "Sudan (the)",
+        "Suriname",
+        "Svalbard and Jan Mayen",
+        "Sweden",
+        "Switzerland",
+        "Syrian Arab Republic",
+        "Taiwan",
+        "Tajikistan",
+        "Tanzania, United Republic of",
+        "Thailand",
+        "Timor-Leste",
+        "Togo",
+        "Tokelau",
+        "Tonga",
+        "Trinidad and Tobago",
+        "Tunisia",
+        "Turkey",
+        "Turkmenistan",
+        "Turks and Caicos Islands (the)",
+        "Tuvalu",
+        "Uganda",
+        "Ukraine",
+        "United Arab Emirates (the)",
+        "United Kingdom of Great Britain and Northern Ireland (the)",
+        "United States Minor Outlying Islands (the)",
+        "United States of America (the)",
+        "Uruguay",
+        "Uzbekistan",
+        "Vanuatu",
+        "Venezuela (Bolivarian Republic of)",
+        "Viet Nam",
+        "Virgin Islands (British)",
+        "Virgin Islands (U.S.)",
+        "Wallis and Futuna",
+        "Western Sahara",
+        "Yemen",
+        "Zambia",
+        "Zimbabwe",
+        "Åland Islands",
+      ];
+      countryList.forEach((county) => {
+         
+         let li = document.createElement("li");
+         li.appendChild(document.createTextNode(county));
+         li.className = "countrys";
+         countrys_list.appendChild(li);
+       });
+      let flag=true;
+      select.addEventListener("click", function () {
+        input.value = "";
+        console.log(input.value);
+        box.style.display = "block";
+       
+        let country = document.querySelectorAll(".countrys");
+        country.forEach((element) => {
+          element.addEventListener("mouseover", function (e) {
+            element.style.backgroundColor = "rgba(235, 231, 231, 0.678)";
+
+            element.addEventListener("click", function () {
+              select.innerHTML = element.textContent;
+              box.style.display = "none";
+              country.forEach((ele) => {
+            ele.style.display = "block";
+          });
+            });
+          });
+
+          element.addEventListener("mouseout", function (e) {
+            element.style.backgroundColor = "white";
+          });
+        });
+        let x = "";
+        input.addEventListener("keydown", function (el) {
+          // console.log(el.keyCode);
+
+          if (el.key === "Backspace") {
+            x = x.slice(0, x.length - 1);
+            console.log(x);
+          } else if (el.keyCode > 64) {
+            x += el.key;
+            x = x.charAt(0).toUpperCase() + x.slice(1, x.length);
+            console.log(x, x.charAt(0).toUpperCase());
+          }
+          country.forEach((elem) => {
+            elem.style.display = "none";
+          });
+          country.forEach((element) => {
+            if (x == element.textContent.slice(0, x.length)) {
+              element.style.display = "block";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
